@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void insertQuestions() {
+        // 10
         questions.add(new Question("Who was the 2014-2015 MVP?", new Answer[]{new Answer("Stephen Curry", true), new Answer("James Harden", false), new Answer("LeBron James", false), new Answer("Kawhi Leonard", false)}));
         questions.add(new Question("Who was the 2014-2015 Defensive Player of the Year?", new Answer[]{new Answer("Draymond Green", false), new Answer("Kawhi Leonard", true), new Answer("LeBron James", false), new Answer("DeAndre Jordan", false)}));
         questions.add(new Question("Who was the 2014-2015 Coach of the Year?", new Answer[]{new Answer("Mike Budenholzer", true), new Answer("Jason Kidd", false), new Answer("Steve Kerr", false), new Answer("Gregg Popovich", false)}));
@@ -166,5 +167,18 @@ public class MainActivity extends AppCompatActivity {
         questions.add(new Question("How many All-Star appearances did Shaquille O'Neal have", new Answer[]{new Answer("15", true), new Answer("18", false), new Answer("17", false), new Answer("16", false)}));
         questions.add(new Question("What is Karl Malone's jersey number", new Answer[]{new Answer("21", false), new Answer("32", true), new Answer("00", false), new Answer("45", false)}));
         questions.add(new Question("What was the most points Kevin Garnett ever scored in a game?", new Answer[]{new Answer("50", false), new Answer("49", false), new Answer("47", true), new Answer("44", false)}));
+
+        // 20
+        questions.add(new Question("What is Wilt Chamberlain's record for most points in a game?", new Answer[]{new Answer("98", false), new Answer("85", false), new Answer("91", false), new Answer("100", true)}));
+        questions.add(new Question("Who was the first center to lead the NBA in assists for a season?", new Answer[]{new Answer("Wilt Chamberlain", true), new Answer("George Mikan", false), new Answer("Bill Russell", false), new Answer("Bill Walton", false)}));
+        questions.add(new Question("Who was the first player to win back to back MVPs?", new Answer[]{new Answer("Wilt Chamberlain", false), new Answer("Bill Russell", true), new Answer("Kareem Abdul-Jabbar", false), new Answer("Isaiah Thomas", false)}));
+        questions.add(new Question("What NBA star retired for the third time on May 14, 1996?", new Answer[]{new Answer("Michael Jordan", false), new Answer("Magic Johnson", true), new Answer("Larry Bird", false), new Answer("Karl Malone", false)}));
+        questions.add(new Question("Which team was Kareem Abdul-Jabbar drafted by?", new Answer[]{new Answer("Detroit Pistons", false), new Answer("Seattle SuperSonics", false), new Answer("Phoenix Suns", false), new Answer("Milwaukee Bucks", true)}));
+        questions.add(new Question("Which team won the 08-09 NBA Championship?", new Answer[]{new Answer("Los Angeles Lakers", true), new Answer("Orlando Magic", false), new Answer("Cleveland Cavaliers", false), new Answer("Dallas Mavericks", false)}));
+        questions.add(new Question("Which player won the 06-07 Defensive Player of the Year award?", new Answer[]{new Answer("Ben Wallace", false), new Answer("Marcus Camby", true), new Answer("Ron Artest", false), new Answer("Kevin Garnett", false)}));
+        questions.add(new Question("How many jersey numbers has Michael Jordan worn in his NBA career?", new Answer[]{new Answer("1", false), new Answer("2", false), new Answer("3", true), new Answer("4", false)}));
+        questions.add(new Question("How many times has Ray Allen been named an All-Star?", new Answer[]{new Answer("10", true), new Answer("8", false), new Answer("11", false), new Answer("7", false)}));
+        questions.add(new Question("Which European was the 2002 Rookie of the Year?", new Answer[]{new Answer("Tony Parker", false), new Answer("Manu Ginóbili", false), new Answer("Dirk Nowitzki", false), new Answer("Pau Gasol", true)}));
+
     }
 }
