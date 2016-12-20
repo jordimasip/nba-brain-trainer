@@ -31,32 +31,47 @@ public class MainActivity extends AppCompatActivity {
     int locationOfCorrectAnswer;
     int score = 0;
     int numberOfQuestions = 0;
+    ArrayList<Integer> locationPastQuestions = new ArrayList<>();
+
+    public static boolean isAlreadyAsk(ArrayList<Integer> arr, int targetValue) {
+        for (int i = 0; i < arr.size(); i++) {
+            if(arr.get(i).intValue() == targetValue) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getPositionQuestion() {
+        Random rand = new Random();
+        int positionQuestion = rand.nextInt(questions.size());
+        while(isAlreadyAsk(locationPastQuestions, positionQuestion)) {
+            positionQuestion = rand.nextInt(questions.size());
+        }
+        locationPastQuestions.add(positionQuestion);
+        return positionQuestion;
+    }
 
     public void generateQuestion() {
-        Random rand = new Random();
+        int positionQuestion = getPositionQuestion();
+        Log.i("StatsLovers", "posicio pregunta -------------> "+positionQuestion);
 
-        int positionAnswer = rand.nextInt(11);
-
-        questionTextView.setText(questions.get(positionAnswer).description);
-        Log.i("StatsLovers",questions.get(positionAnswer).answers[0].description);
+        questionTextView.setText(questions.get(positionQuestion).description);
         for(int i=0; i < 4; i++) {
-            if (questions.get(positionAnswer).answers[i].isCorrect) {
+            if (questions.get(positionQuestion).answers[i].isCorrect) {
                 locationOfCorrectAnswer = i;
             }
         }
-        button0.setText(questions.get(positionAnswer).answers[0].description);
-        button1.setText(questions.get(positionAnswer).answers[1].description);
-        button2.setText(questions.get(positionAnswer).answers[2].description);
-        button3.setText(questions.get(positionAnswer).answers[3].description);
+        button0.setText(questions.get(positionQuestion).answers[0].description);
+        button1.setText(questions.get(positionQuestion).answers[1].description);
+        button2.setText(questions.get(positionQuestion).answers[2].description);
+        button3.setText(questions.get(positionQuestion).answers[3].description);
 
     }
 
     public void chooseAnswer(View view) {
-        Log.i("correct", "posicio guanyadora ---> "+Integer.toString(locationOfCorrectAnswer));
-        Log.i("correct", "seleccio ---> "+view.getTag().toString());
 
         if (view.getTag().toString().equals(Integer.toString(locationOfCorrectAnswer))) {
-            Log.i("correct", "correct");
             score++;
             resultTextView.setText("Correct!");
         } else {
@@ -72,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         score = 0;
         numberOfQuestions = 0;
 
-        timerTextView.setText("30s");
+        timerTextView.setText("60s");
         pointsTextView.setText("0/0");
         resultTextView.setText("");
         playAgainButton.setVisibility(View.INVISIBLE);
@@ -84,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         generateQuestion();
 
-        new CountDownTimer(30100, 1000) {
+        new CountDownTimer(60100, 1000) {
 
             @Override
             public void onTick(long l) {
@@ -174,11 +189,31 @@ public class MainActivity extends AppCompatActivity {
         questions.add(new Question("Who was the first player to win back to back MVPs?", new Answer[]{new Answer("Wilt Chamberlain", false), new Answer("Bill Russell", true), new Answer("Kareem Abdul-Jabbar", false), new Answer("Isaiah Thomas", false)}));
         questions.add(new Question("What NBA star retired for the third time on May 14, 1996?", new Answer[]{new Answer("Michael Jordan", false), new Answer("Magic Johnson", true), new Answer("Larry Bird", false), new Answer("Karl Malone", false)}));
         questions.add(new Question("Which team was Kareem Abdul-Jabbar drafted by?", new Answer[]{new Answer("Detroit Pistons", false), new Answer("Seattle SuperSonics", false), new Answer("Phoenix Suns", false), new Answer("Milwaukee Bucks", true)}));
-        questions.add(new Question("Which team won the 08-09 NBA Championship?", new Answer[]{new Answer("Los Angeles Lakers", true), new Answer("Orlando Magic", false), new Answer("Cleveland Cavaliers", false), new Answer("Dallas Mavericks", false)}));
-        questions.add(new Question("Which player won the 06-07 Defensive Player of the Year award?", new Answer[]{new Answer("Ben Wallace", false), new Answer("Marcus Camby", true), new Answer("Ron Artest", false), new Answer("Kevin Garnett", false)}));
+        questions.add(new Question("Which team won the 2008-09 NBA Championship?", new Answer[]{new Answer("Los Angeles Lakers", true), new Answer("Orlando Magic", false), new Answer("Cleveland Cavaliers", false), new Answer("Dallas Mavericks", false)}));
+        questions.add(new Question("Which player won the 2006-07 Defensive Player of the Year award?", new Answer[]{new Answer("Ben Wallace", false), new Answer("Marcus Camby", true), new Answer("Ron Artest", false), new Answer("Kevin Garnett", false)}));
         questions.add(new Question("How many jersey numbers has Michael Jordan worn in his NBA career?", new Answer[]{new Answer("1", false), new Answer("2", false), new Answer("3", true), new Answer("4", false)}));
         questions.add(new Question("How many times has Ray Allen been named an All-Star?", new Answer[]{new Answer("10", true), new Answer("8", false), new Answer("11", false), new Answer("7", false)}));
         questions.add(new Question("Which European was the 2002 Rookie of the Year?", new Answer[]{new Answer("Tony Parker", false), new Answer("Manu Ginóbili", false), new Answer("Dirk Nowitzki", false), new Answer("Pau Gasol", true)}));
+
+        // 30
+        questions.add(new Question("Which team won the 2015-16 NBA Championship?", new Answer[]{new Answer("San Antonio Spurs", false), new Answer("Golden State Warriors", false), new Answer("Cleveland Cavaliers", true), new Answer("Miami Heat", false)}));
+        questions.add(new Question("Which team won the 2014-15 NBA Championship?", new Answer[]{new Answer("Boston Celtics", false), new Answer("Houston Rockets", false), new Answer("Cleveland Cavaliers", false), new Answer("Golden State Warriors", true)}));
+        questions.add(new Question("Which team won the 2013-14 NBA Championship?", new Answer[]{new Answer("San Antonio Spurs", true), new Answer("Miami Heat", false), new Answer("Oklahoma City Thunder", false), new Answer("Dallas Mavericks", false)}));
+        questions.add(new Question("Which team won the 2012-13 NBA Championship?", new Answer[]{new Answer("Houston Rockets", false), new Answer("Boston Celtics", false), new Answer("Miami Heat", true), new Answer("San Antonio Spurs", false)}));
+        questions.add(new Question("Which team won the 2011-12 NBA Championship?", new Answer[]{new Answer("Oklahoma City Thunder", false), new Answer("Miami Heat", true), new Answer("Dallas Mavericks", false), new Answer("Golden State Warriors", false)}));
+        questions.add(new Question("Which team won the 2010-11 NBA Championship?", new Answer[]{new Answer("Miami Heat", false), new Answer("Cleveland Cavaliers", false), new Answer("New Jersey Nets", false), new Answer("Dallas Mavericks", true)}));
+
+        /*
+        2000 	Los Angeles Lakers (1) 	4–2 	Indiana Pacers (1) 	[78]
+        2001 	Los Angeles Lakers (2) 	4–1 	Philadelphia 76ers (1) 	[79]
+        2002 	Los Angeles Lakers (3) 	4–0 	New Jersey Nets (1) 	[80]
+        2003 	San Antonio Spurs (1) 	4–2 	New Jersey Nets (2) 	[81]
+        2004 	Los Angeles Lakers (2) 	1–4 	Detroit Pistons (3) 	[82]
+        2005 	San Antonio Spurs (2) 	4–3 	Detroit Pistons (2) 	[83]
+        2006 	Dallas Mavericks (4) 	2–4 	Miami Heat (2) 	[84]
+        2007 	San Antonio Spurs (3) 	4–0 	Cleveland Cavaliers (2) 	[85]
+        2008 	Los Angeles Lakers (1) 	2–4 	Boston Celtics (1)dagger 	[86]
+        2010 	Los Angeles Lakers (1) 	4–3 	Boston Celtics (4)*/
 
     }
 }
